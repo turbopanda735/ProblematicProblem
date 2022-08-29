@@ -16,11 +16,14 @@ namespace ProblematicProblem
             while (!validUserResponse)
             {
                 Console.Write("Hello, welcome to the random activity generator! \nWould you like to generate a random activity? yes/no: ");
-                var UserResponse = Console.ReadLine();
-                if (UserResponse.ToLower() == "yes")
+                var userResponse = Console.ReadLine();
+                if (userResponse.ToLower() == "no")
                 {
-                    validUserResponse = true;
+                    Console.WriteLine("bye!");
+                    return;
                 }
+                else if (userResponse.ToLower() == "yes")
+                    validUserResponse = true;
                 else validUserResponse = false;
             }
 
@@ -43,7 +46,11 @@ namespace ProblematicProblem
                     validSeeListTwo = true;
                     seeList = true;
                 }
-                else validSeeListTwo = true;
+                else if (validSeeList.ToLower() == "no thanks")
+                {
+                    validSeeListTwo = true;
+                }
+                else validSeeListTwo = false;
             }
 
             Console.WriteLine();
@@ -54,6 +61,7 @@ namespace ProblematicProblem
                     Console.Write($"{activity} ");
                     Thread.Sleep(250);
                 }
+                Console.WriteLine();
             }
 
             Console.WriteLine();
@@ -68,7 +76,11 @@ namespace ProblematicProblem
                     validAddToList = true;
                     addToList = true;
                 }
-                else validAddToList = true;
+                else if (userAddToList.ToLower() == "no")
+                {
+                    validAddToList = true;
+                }
+                else validAddToList = false;
             }
 
             Console.WriteLine();
@@ -83,11 +95,12 @@ namespace ProblematicProblem
                     Thread.Sleep(250);
                 }
                 Console.WriteLine();
-                Console.WriteLine("Would you like to add more? yes/no: ");
+                Console.WriteLine("Would you like to add more? yes/no. invalid input will ask you again: ");
                 var moreInput = Console.ReadLine();
-                if (moreInput == "yes")
+                if (moreInput.ToLower() == "yes")
                     addToList = true;
-                else addToList = false;
+                else if (moreInput.ToLower() == "no")
+                    addToList = false;
             }
 
             Console.WriteLine();
